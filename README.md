@@ -1,7 +1,7 @@
 # BotMaster
 Twitter bots are fun! They don't have to be hard.
 
-## What IT Is
+## What It Is
 `botmaster` contains some helpers to make building Twitter bots easier.
 It's really just some sugar built on top of the excellent
 [Twitter](http://mike.verdone.ca/twitter/) library.
@@ -14,7 +14,7 @@ in the name) are wrappers around `twitter.OAuth`. The latter two (with
 (Before you ask, yes, I do feel a little bad for not splitting it into `auth.py`
   and `tweet.py`, but it's only 4 little functions.)
 
-`_auth` is pretty simple--it takes four strings and gives you back an `OAuth` object
+`_auth` is pretty simple--it takes four strings and gives you back an `OAuth` object.
 
 `env_auth` is a little more nuanced, but also more helpful. As the
 name suggests, it creates an `OAuth` object from values stored as
@@ -97,3 +97,8 @@ PRs and such more than welcome! In particular, I'd really like help with two thi
   sometime in the next few days. I've never packaged anything up before, and could use tips.
 
 License: [WTFPL](http://www.wtfpl.net/), because it rules.
+
+I really shouldn't have to say this, but: *please* don't use my code to violate Twitter's
+TOS, or harass anyone, or be a jerk generally. Bots make Twitter a weirder, better place,
+and the last friggin' thing anyone needs is robots yelling about ethics in gaming journalism
+or similar nonsense clogging up people's feeds. Be cool, OK?
