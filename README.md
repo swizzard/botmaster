@@ -37,9 +37,13 @@ The decorators both take the same arguments:
   * interval: the interval (in seconds) to wait between tweets.
     * defaults to `1800` (seconds, i.e., 30 minutes)
   * ignore: an optional list of numerical Twitter API error codes to ignore.
-    Setting this value to `[187]` would squash the `duplicate status` error.
-    See [this page](https://dev.twitter.com/overview/api/response-codes)
-    (scroll down to the `Error Codes` section) for more information.
+    For example, setting this value to `[187]` would ignore the `duplicate
+    status` error. See [this
+    page](https://dev.twitter.com/overview/api/response-codes) (scroll down to
+    the `Error Codes` section) for more information.
+
+    NB: When an error is ignored, the function will be called again (or the
+    generator will be advanced again).
     * defaults to `None`, i.e. all `twitter.api.TwitterHTTPError`s are
       re-raised
 
@@ -57,9 +61,14 @@ Behold:
 
     my_auth = botmaster.env_auth("mytoken", "mysecret", "myapikey", "myapisecret")
 
-    # use my_auth for authorization, tweet once every hour
-    @botmaster.tweet(auth=my_auth, interval=3600)
+    # use my_auth for authorization, tweet once every hour, ignore duplicate
+
+    # status errors
+
+    @botmaster.tweet(auth=my_auth, interval=3600, ignore=[187])
+
     def screambot():
+
         return "{a}hhh!".format(a="a" * randint(1, 100))
 
 
