@@ -3,7 +3,6 @@ Turn functions and generators into twitter bots
 """
 
 import sys
-import json
 from time import sleep
 
 from twitter import Twitter
@@ -14,7 +13,7 @@ def parse_err(err):
     """
     Parse a `TwitterHTTPError and extract the error codes from it
     """
-    response_data = json.loads(err.response_data.decode('utf-8'))
+    response_data = err.response_data
     codes = set([error['code'] for error in response_data['errors']])
     return codes
 
