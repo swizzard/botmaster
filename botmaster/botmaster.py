@@ -2,7 +2,6 @@
 Turn functions and generators into twitter bots
 """
 
-import json
 import sys
 from time import sleep
 
@@ -14,8 +13,7 @@ def parse_err(err):
     """
     Parse a `TwitterHTTPError and extract the error codes from it
     """
-    resp = json.loads(err.response_data)
-    codes = set([err['code'] for err in resp['errors']])
+    codes = set([err['code'] for err in err.response_data['errors']])
     return codes
 
 
@@ -40,6 +38,7 @@ def tweet(auth, interval=1800, ignore=None):
                 try:
                     twt.statuses.update(status=func(*args, **kwargs))
                 except TwitterHTTPError as err:
+                    return err
                     if ignore is None:
                         raise
                     elif not all([(code in ignore) for code in
