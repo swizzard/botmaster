@@ -62,13 +62,9 @@ Behold:
     my_auth = botmaster.env_auth("mytoken", "mysecret", "myapikey", "myapisecret")
 
     # use my_auth for authorization, tweet once every hour, ignore duplicate
-
     # status errors
-
     @botmaster.tweet(auth=my_auth, interval=3600, ignore=[187])
-
     def screambot():
-
         return "{a}hhh!".format(a="a" * randint(1, 100))
 
 
