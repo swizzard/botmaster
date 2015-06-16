@@ -1,4 +1,5 @@
 # coding=utf8
 __author__ = 'Sam Raker'
 
-from botmaster import _auth, env_auth, tweet, gen_tweet
+from botmaster import tweet, gen_tweet
+from auth import _auth, env_auth
