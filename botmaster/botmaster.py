@@ -7,6 +7,7 @@ import sys
 from time import sleep
 
 from twitter import Twitter
+from twitter.api import TwitterHTTPError
 from twitter.oauth import OAuth
 
 
@@ -36,7 +37,7 @@ def tweet(auth, interval=1800, ignore=None):
             while True:
                 try:
                     twt.statuses.update(status=func(*args, **kwargs))
-                except twitter.api.TwitterHTTPError as err:
+                except TwitterHTTPError as err:
                     if ignore is None:
                         raise
                     elif not all([(code in ignore) for code in
@@ -77,7 +78,7 @@ def gen_tweet(auth, interval=1800, ignore=None, restart=False):
                         gnr = func(*args, **kwargs)
                     else:
                         sys.exit(0)
-                except twitter.api.TwitterHTTPError as err:
+                except TwitterHTTPError as err:
                     if ignore is None:
                         raise
                     elif not all([(code in ignore) for code in
