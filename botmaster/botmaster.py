@@ -2,16 +2,18 @@
 Turn functions and generators into twitter bots
 """
 
-from os import getenv
+import json
 import sys
 from time import sleep
 
 from twitter import Twitter
 from twitter.api import TwitterHTTPError
-from twitter.oauth import OAuth
 
 
 def parse_err(err):
+    """
+    Parse a `TwitterHTTPError and extract the error codes from it
+    """
     resp = json.loads(err.response_data)
     codes = set([err['code'] for err in resp['errors']])
     return codes
