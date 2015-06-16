@@ -34,7 +34,6 @@ a string; `gen_tweet` takes a [generator](https://wiki.python.org/moin/Generator
 
 The decorators both take the same arguments:
   * auth: a `twitter.OAuth` object, e.g. as returned by `_auth` or `env_auth` :wink:
-    * defaults to `env_auth`
   * interval: the interval (in seconds) to wait between tweets.
     * defaults to `1800` (seconds, i.e., 30 minutes)
   * ignore: an optional list of numerical Twitter API error codes to ignore.
