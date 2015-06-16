@@ -13,7 +13,7 @@ def parse_err(err):
     """
     Parse a `TwitterHTTPError and extract the error codes from it
     """
-    codes = set([err['code'] for err in err.response_data['errors']])
+    codes = set([error['code'] for error in err.response_data['errors']])
     return codes
 
 
@@ -38,7 +38,6 @@ def tweet(auth, interval=1800, ignore=None):
                 try:
                     twt.statuses.update(status=func(*args, **kwargs))
                 except TwitterHTTPError as err:
-                    return err
                     if ignore is None:
                         raise
                     elif not all([(code in ignore) for code in
@@ -73,7 +72,7 @@ def gen_tweet(auth, interval=1800, ignore=None, restart=False):
             gnr = func(*args, **kwargs)
             while True:
                 try:
-                    twt.statuses.update(status=gnr.next())
+                    twt.statuses.update(status=(next(gnr)))
                 except StopIteration:
                     if restart:
                         gnr = func(*args, **kwargs)
